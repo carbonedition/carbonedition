@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>CARBONEDITION | Premium Racing Car Rentals</title> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            /* Color Variables - Easy to change */
+            --primary: #bf9b30 ;         /* Primary red color */
+            --primary-dark: #a67c00;    /* Darker red */
+            --secondary: #000000;       /* Black */
+            --secondary-light: #1a1a1a; /* Slightly lighter black */
+            --accent: #ffffff;         /* White for accents */
+            --text: #e0e0e0;           /* Light gray for text */
+            --text-secondary: #aaaaaa;  /* Secondary text color */
+            
+            /* Additional theme variables */
+            --transition: all 0.3s ease;
+            --border-radius: 8px;
+            --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Rajdhani', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap');
+        
+        html, body {
+            width: 100%;
+            overflow-x: hidden;
+        }
+        
+        body {
+              background-color: var(--secondary);
+            background-image: url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
+            color: var(--text);
+            line-height: 1.6;
+            position: relative;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            width: 100%;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(45deg, var(--primary), var(--primary-dark));
+            color: var(--accent);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 132, 0, 0.3);
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 600;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 132, 0, 0.3);
+            background: linear-gradient(45deg, var(--primary-dark), var(--primary));
+        }
+        
+        .btn:active {
+            transform: translateY(1px);
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            text-align: center;
+            color: var(--accent);
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+        
+        h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(45deg, var(--primary), var(--primary-dark));
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+        
+        /* Header Styles */
+         header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: var(--transition);
+            padding: 20px 0;
+            background-color: rgb(0, 0, 0);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 132, 0, 0.3);
+        }
+        
+        header.scrolled {
+            background-color: rgb(0, 0, 0);
+            padding: 15px 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--accent);
+            text-decoration: none;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        .logo span {
+            color: var(--primary);
+        }
+        
+        /* Desktop Navigation */
+        nav.desktop-nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav.desktop-nav ul li {
+            margin-left: 30px;
+            position: relative;
+        }
+        
+        nav.desktop-nav ul li a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            font-family: 'Rajdhani', sans-serif;
+        }
+        
+        nav.desktop-nav ul li a:hover {
+            color: var(--primary);
+        }
+        
+        nav.desktop-nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            bottom: -5px;
+            left: 0;
+            transition: var(--transition);
+        }
+        
+        nav.desktop-nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        /* Mobile Navigation */
+        .mobile-nav-toggle {
+            display: none;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            padding: 10px;
+            z-index: 1001;
+        }
+        
+        .mobile-nav-toggle .hamburger {
+            display: block;
+            width: 30px;
+            height: 2px;
+            background-color: var(--accent);
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        .mobile-nav-toggle .hamburger::before,
+        .mobile-nav-toggle .hamburger::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: var(--accent);
+            transition: var(--transition);
+        }
+        
+        .mobile-nav-toggle .hamburger::before {
+            top: -8px;
+        }
+        
+        .mobile-nav-toggle .hamburger::after {
+            top: 8px;
+        }
+        
+        .mobile-nav-toggle[aria-expanded="true"] .hamburger {
+            background-color: transparent;
+        }
+        
+        .mobile-nav-toggle[aria-expanded="true"] .hamburger::before {
+            transform: rotate(45deg);
+            top: 0;
+        }
+        
+        .mobile-nav-toggle[aria-expanded="true"] .hamburger::after {
+            transform: rotate(-45deg);
+            top: 0;
+        }
+        
+        nav.mobile-nav {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 80%;
+            max-width: 300px;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 100px 30px 30px;
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1000;
+            border-left: 2px solid var(--primary);
+        }
+        
+        nav.mobile-nav[data-visible="true"] {
+            transform: translateX(0%);
+        }
+        
+        nav.mobile-nav ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        nav.mobile-nav ul li a {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--transition);
+            display: block;
+            padding: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        nav.mobile-nav ul li a:hover {
+            color: var(--primary);
+            padding-left: 15px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/bg.jpg') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--accent);
+            position: relative;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(transparent, var(--secondary));
+            z-index: 1;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+            width: 100%;
+        }
+        
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 700;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            line-height: 1.2;
+        }
+        
+        .hero h1 span {
+            color: var(--primary);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            color: var(--text);
+        }
+        
+        .hero .btn {
+            font-size: 1.1rem;
+            padding: 15px 40px;
+            margin-top: 20px;
+        }
+        
+        /* Racing Stripes */
+        .racing-stripes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            z-index: 0;
+            opacity: 0.1;
+        }
+        
+        .stripe {
+            height: 100%;
+            flex: 1;
+            background-color: #43cdff;
+            margin: 0 2px;
+            transform: skewX(-15deg);
+        }
+        
+        /* Fleet Section */
+        .fleet {
+            background-color: var(--secondary);
+            position: relative;
+        }
+        
+        .fleet::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 20px;
+            background: linear-gradient(var(--primary), transparent);
+            opacity: 0.2;
+        }
+        
+        .fleet-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .car-card {
+            background-color: var(--secondary-light);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+        }
+        
+        .car-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+        }
+        
+        .car-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(255, 132, 0, 0.3);
+        }
+        
+        .car-img {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .car-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .car-card:hover .car-img img {
+            transform: scale(1.1);
+        }
+        
+        .car-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--primary);
+            color: var(--accent);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .car-info {
+            padding: 25px;
+        }
+        
+        .car-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--accent);
+            font-weight: 600;
+        }
+        
+        .car-specs {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .car-specs span {
+            display: flex;
+            align-items: center;
+        }
+        
+        .car-specs i {
+            margin-right: 5px;
+            color: var(--primary);
+        }
+        
+        .car-price {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .car-price span {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            font-weight: normal;
+        }
+        
+        .view-all {
+            text-align: center;
+            margin-top: 50px;
+        }
+        
+        /* Stats Section */
+        .stats {
+            background-color: var(--secondary-light);
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+        
+        .stat-item {
+            padding: 30px;
+            position: relative;
+        }
+        
+        .stat-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--secondary-light);
+            color: var(--text);
+            padding: 20px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .copyright {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            /* Mobile Navigation Styles */
+            nav.desktop-nav {
+                display: none;
+            }
+            
+            .mobile-nav-toggle {
+                display: block;
+            }
+            
+            nav.mobile-nav {
+                display: block;
+            }
+            
+            .fleet-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+          @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero .btn {
+                padding: 12px 30px;
+                font-size: 1rem;
+            }
+            
+            .car-card {
+                max-width: 100%;
+            }
+            
+            .stats-container {
+                grid-template-columns: 1fr;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Racing Stripes Background -->
+    <div class="racing-stripes">
+        <div class="stripe"></div>
+        <div class="stripe"></div>
+        <div class="stripe"></div>
+        <div class="stripe"></div>
+        <div class="stripe"></div>
+    </div>
+
+    <!-- Header -->
+        <header id="header">
+        <div class="container header-container">
+            <a href="main.html" class="logo">
+                <img src="images/blacklogocev.png" alt="Carbon Edition Logo" style="height: 60px; margin-top: 20px; width: auto; ;">
+            </a>
+            
+            <button class="mobile-nav-toggle"aria-controls="mobile-navigation" aria-expanded="false">
+                <span class="hamburger"></span>
+                <span class="sr-only">Menu</span>
+            </button>
+            
+            <!-- Desktop Navigation -->
+            <nav class="desktop-nav">
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="fleet.html">Fleet</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <!-- Mobile Navigation -->
+            <nav class="mobile-nav" id="mobile-navigation" data-visible="false">
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="fleet.html">Fleet</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>UNLEASH <span>THE BEAST</span></h1>
+            <p>Experience the thrill of driving the world's most powerful performance cars. From track-ready supercars to legendary hypercars, we offer the ultimate driving experience for true enthusiasts.</p>
+            <a href="#fleet" class="btn">View Your Ride</a>
+        </div>
+    </section>
+
+    <!-- Fleet Section -->
+    <section id="fleet" class="fleet">
+        <div class="container">
+            <h2>Our Racing Fleet</h2>
+            <div class="fleet-grid">
+                <!-- Car 1 -->
+                <div class="car-card">
+                    <div class="car-img">
+                        <img src="https://hips.hearstapps.com/hmg-prod/images/488pista-1557778038.jpg?crop=1.00xw:0.924xh;0,0.0759xh&resize=2048:*" alt="Ferrari 488 GTB">
+                        <div class="car-badge">Track Ready</div>
+                    </div>
+                    <div class="car-info">
+                        <h3>Ferrari 488 GTB</h3>
+                        </div>
+                </div>
+                
+                <!-- Car 2 -->
+                <div class="car-card">
+                    <div class="car-img">
+                        <img src="https://pictures.porsche.com/rtt/iris?COSY-EU-100-1711coMvsi60AAt5FwcmBEgA4qP8iBUDxPE3Cb9pNXkBuNYdMGF4tl3U0%25z8rMHIspbWvanYb%255y%25oq%25vSTmjMXD4qAZeoNBPUSfUx4RmHlCgI7Zl2dioCxkF%25vUqCNwuWXsOw3meV6iTCj%25zhRc2GRdqAZ%25oD21P%25S1BAXmenugTfeIJpV7nDhQk" alt="Porsche 911 GT3 RS">
+                        <div class="car-badge">Track Ready</div>
+                    </div>
+                    <div class="car-info">
+                        <h3>Porsche 911 GT3 RS</h3>
+                      
+                    </div>  
+                </div>
+                
+                <!-- Car 3 -->
+                <div class="car-card">
+                    <div class="car-img">
+                        <img src="https://alobaidi-cars.com/wp-content/uploads/2024/08/Mercedes-Benz-G63-AMG-BRABUS-Rocket-Edition-2024-Black-Color-1-1024x576.jpeg" alt="Lamborghini Huracan">
+                        <div class="car-badge">New Arrival</div>
+                    </div>
+                    <div class="car-info">
+                        <h3>Brabus G63 AMG</h3>
+                        </div>
+                </div>
+            </div>
+            
+            <div class="view-all">
+                <a href="fleet.html" class="btn">View All Cars</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="stat-number">15+</div>
+                    <div class="stat-label">High-Performance Cars</div>
+                </div>
+               
+                <div class="stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Support</div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="copyright">
+             <p>&copy; 2025 CARBONEDITION. All Rights Reserved.</p>
+
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Sticky Header
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Mobile Navigation Toggle
+        const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+        const mobileNav = document.querySelector('.mobile-nav');
+        
+        mobileNavToggle.addEventListener('click', () => {
+            const visibility = mobileNav.getAttribute('data-visible');
+            const expanded = mobileNavToggle.getAttribute('aria-expanded');
+            
+            if (visibility === "false") {
+                mobileNav.setAttribute('data-visible', "true");
+                mobileNavToggle.setAttribute('aria-expanded', "true");
+                document.body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
+            } else {
+                mobileNav.setAttribute('data-visible', "false");
+                mobileNavToggle.setAttribute('aria-expanded', "false");
+                document.body.style.overflow = ''; // Re-enable scrolling
+            }
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.mobile-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.setAttribute('data-visible', "false");
+                mobileNavToggle.setAttribute('aria-expanded', "false");
+                document.body.style.overflow = '';
+            });
+        });
+        
+        // Smooth scrolling for all internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
