@@ -1,0 +1,1136 @@
+:root {
+            /* Color Variables - Easy to change */
+            --primary: #bf9b30;         /* Primary red color */
+            --primary-dark: #a67c00;    /* Darker red */
+            --secondary: #000000;       /* Black */
+            --secondary-light: #1a1a1a; /* Slightly lighter black */
+            --accent: #ffffff;         /* White for accents */
+            --text: #e0e0e0;           /* Light gray for text */
+            --text-secondary: #aaaaaa;  /* Secondary text color */
+            
+            /* Additional theme variables */
+            --transition: all 0.3s ease;
+            --border-radius: 8px;
+            --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Rajdhani', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap');
+        
+        html, body {
+            width: 100%;
+            overflow-x: hidden;
+        }
+        
+        body {
+            background-color: var(--secondary);
+            color: var(--text);
+            line-height: 1.6;
+            position: relative;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            width: 100%;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(45deg, var(--primary), var(--primary-dark));
+            color: var(--accent);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 132, 0, 0.3);
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 600;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 132, 0, 0.3);
+            background: linear-gradient(45deg, var(--primary-dark), var(--primary));
+        }
+        
+        .btn:active {
+            transform: translateY(1px);
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            text-align: center;
+            color: var(--accent);
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+        
+        h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(45deg, var(--primary), var(--primary-dark));
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+        
+        /* Header Styles */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: var(--transition);
+            padding: 20px 0;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 132, 0, 0.3);
+        }
+        
+        header.scrolled {
+            background-color: rgba(0, 0, 0, 0.95);
+            padding: 15px 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--accent);
+            text-decoration: none;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        .logo span {
+            color: var(--primary);
+        }
+        
+        /* Desktop Navigation */
+        nav.desktop-nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav.desktop-nav ul li {
+            margin-left: 30px;
+            position: relative;
+        }
+        
+        nav.desktop-nav ul li a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            font-family: 'Rajdhani', sans-serif;
+        }
+        
+        nav.desktop-nav ul li a:hover {
+            color: var(--primary);
+        }
+        
+        nav.desktop-nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            bottom: -5px;
+            left: 0;
+            transition: var(--transition);
+        }
+        
+        nav.desktop-nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        /* Mobile Navigation */
+        .mobile-nav-toggle {
+            display: none;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            padding: 10px;
+            z-index: 1001;
+        }
+        
+        .mobile-nav-toggle .hamburger {
+            display: block;
+            width: 30px;
+            height: 2px;
+            background-color: var(--accent);
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        .mobile-nav-toggle .hamburger::before,
+        .mobile-nav-toggle .hamburger::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: var(--accent);
+            transition: var(--transition);
+        }
+        
+        .mobile-nav-toggle .hamburger::before {
+            top: -8px;
+        }
+        
+        .mobile-nav-toggle .hamburger::after {
+            top: 8px;
+        }
+        
+        .mobile-nav-toggle[aria-expanded="true"] .hamburger {
+            background-color: transparent;
+        }
+        
+        .mobile-nav-toggle[aria-expanded="true"] .hamburger::before {
+            transform: rotate(45deg);
+            top: 0;
+        }
+        
+        .mobile-nav-toggle[aria-expanded="true"] .hamburger::after {
+            transform: rotate(-45deg);
+            top: 0;
+        }
+        
+        nav.mobile-nav {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 80%;
+            max-width: 300px;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 100px 30px 30px;
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1000;
+            border-left: 2px solid var(--primary);
+        }
+        
+        nav.mobile-nav[data-visible="true"] {
+            transform: translateX(0%);
+        }
+        
+        nav.mobile-nav ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        nav.mobile-nav ul li a {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--transition);
+            display: block;
+            padding: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        nav.mobile-nav ul li a:hover {
+            color: var(--primary);
+            padding-left: 15px;
+        }
+        
+        /* Fleet Banner Section */
+        .fleet-banner {
+            height: 60vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1561043943-5ec0f8de514f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--accent);
+            position: relative;
+            margin-bottom: 0;
+        }
+        
+        .fleet-banner::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(transparent, var(--secondary));
+            z-index: 1;
+        }
+        
+        .fleet-banner-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            margin-top: 80px;
+        }
+        
+        .fleet-banner h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 700;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            line-height: 1.2;
+        }
+        
+        .fleet-banner h1 span {
+            color: var(--primary);
+        }
+        
+        .fleet-banner p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            color: var(--text);
+        }
+        
+        /* Fleet Grid Section */        .fleet-page {
+            background-color: var(--secondary);
+            position: relative;
+            padding-top: 40px;
+            margin-top: -1px;
+        }
+        
+        .fleet-page::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 20px;
+            background: linear-gradient(var(--primary), transparent);
+            opacity: 0.2;
+        }
+     
+        .fleet-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 30px auto;
+            max-width: 1200px;
+            padding: 0 20px;
+        }
+        
+        .car-card {
+            background-color: var(--secondary-light);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            max-width: 400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        
+        .car-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+        }
+        
+        .car-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(255, 132, 0, 0.3);
+        }
+        
+        .car-img {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .car-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .car-card:hover .car-img img {
+            transform: scale(1.1);
+        }
+        
+        .car-info {
+            padding: 25px;
+        }
+        
+        .car-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--accent);
+            font-weight: 600;
+        }
+        
+        .car-specs {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .car-specs span {
+            display: flex;
+            align-items: center;
+        }
+        
+        .car-specs i {
+            margin-right: 5px;
+            color: var(--primary);
+        }
+        
+        .car-price {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .car-price span {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            font-weight: normal;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            overflow-y: auto;
+        }          .modal-content {
+            background-color: var(--secondary-light);
+            margin: 10vh auto;
+            padding: 30px;
+            width: 80%;
+            max-width: 900px;
+            border-radius: var(--border-radius);
+            position: relative;
+            box-shadow: var(--box-shadow);
+            border-top: 5px solid var(--primary);
+        }          .close-modal {
+            position: absolute;
+            top: 5px;
+            right: 25px;
+            font-size: 32px;
+            color: var(--accent);
+            cursor: pointer;
+            transition: var(--transition);
+            z-index: 2100;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .close-modal:hover {
+            color: var(--primary);
+        }
+          .modal-car-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 40px;
+        }
+          .modal-car-image {
+            flex: 1;
+            min-width: 300px;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+          .carousel {
+            position: relative;
+            width: 100%;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+        
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16/9;
+            background-color: var(--secondary-light);
+        }
+          .carousel-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            object-fit: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .carousel-slide.active {
+            opacity: 1;
+        }            .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            color: var(--accent);
+            border: none;
+            cursor: pointer;
+            font-size: 24px;
+            z-index: 10;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+        }
+        
+        .carousel-btn:hover {
+            color: var(--primary);
+            transform: translateY(-50%) scale(1.15);
+        }
+        
+        .carousel-btn.prev {
+            left: 20px;
+            padding-right: 3px;
+        }
+        
+        .carousel-btn.next {
+            right: 20px;
+            padding-left: 3px;
+        }
+        
+        .carousel-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 10;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 8px 16px;
+            border-radius: 20px;
+        }
+        
+        .dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .dot:hover {
+            transform: scale(1.2);
+        }
+        
+        .dot.active {
+            background: var(--primary);
+            border-color: var(--accent);
+        }
+        
+        .dot.active {
+            background: var(--primary);
+        }
+        
+        .modal-car-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .modal-car-info h3 {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 15px;
+        }
+        
+        .modal-car-info p {
+            margin-bottom: 20px;
+            color: var(--text);
+        }
+        
+        .modal-car-specs {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .spec-item {
+            display: flex;
+            align-items: center;
+        }
+        
+        .spec-item i {
+            color: var(--primary);
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+          .loading, .error {
+            text-align: center;
+            padding: 50px;
+            font-size: 1.2rem;
+            color: var(--text);
+        }
+
+        .error {
+            color: var(--primary);
+            background-color: rgba(255, 0, 0, 0.1);
+            border-radius: var(--border-radius);
+            margin: 20px;
+        }
+        
+        /* Preloader */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--secondary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s, visibility 0.5s;
+        }
+        
+        .preloader.fade-out {
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 132, 0, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--primary);
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        
+        /* Racing Stripes */
+        .racing-stripes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            z-index: 0;
+            opacity: 0.1;
+            pointer-events: none;
+        }
+        
+        .stripe {
+            height: 100%;
+            flex: 1;
+            background-color: var(--primary);
+            margin: 0 2px;
+            transform: skewX(-15deg);
+        }
+        
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+            gap: 10px;
+        }
+        
+        .pagination-btn {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--secondary-light);
+            color: var(--text);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .pagination-btn:hover, .pagination-btn.active {
+            background-color: var(--primary);
+            color: var(--accent);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--secondary-light);
+            color: var(--text);
+            padding: 20px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 80px;
+        }
+        
+        .copyright {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        /* Fullscreen carousel styles */
+        .fullscreen-carousel {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .fullscreen-image {
+            max-width: 95vw;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .fullscreen-carousel .carousel-btn {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 60px;
+            height: 60px;
+            background-color: rgba(255, 255, 255, 0.7);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #333;
+            transition: background-color 0.3s;
+        }
+
+        .fullscreen-carousel .carousel-btn:hover {
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+
+        .fullscreen-carousel .carousel-btn.prev {
+            left: 20px;
+            z-index: 2000;
+        }
+
+        .fullscreen-carousel .carousel-btn.next {
+            right: 20px;
+            z-index: 2000;
+
+        }
+
+        .fullscreen-dots {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+
+        .fullscreen-dots .dot {
+            width: 12px;
+            height: 12px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .fullscreen-dots .dot.active {
+            background-color: white;
+        }
+        
+        /* Close button styles */
+        .close-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.7);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: #333;
+            transition: background-color 0.3s;
+            z-index: 1001;
+        }
+
+        .close-btn:hover {
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Ensure fullscreen image is above the overlay but below buttons */
+        .fullscreen-image {
+            z-index: 1000;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .fleet-banner h1 {
+                font-size: 2.5rem;
+            }
+            
+            .fleet-banner p {
+                font-size: 1rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            /* Mobile Navigation Styles */
+            nav.desktop-nav {
+                display: none;
+            }
+            
+            .mobile-nav-toggle {
+                display: block;
+            }
+            
+            nav.mobile-nav {
+                display: block;
+            }
+            
+            .fleet-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-content {
+                width: 95%;
+                padding: 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .fleet-banner h1 {
+                font-size: 2rem;
+            }
+        
+            .car-card {
+                max-width: 100%;
+            }
+            
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            /* Modal mobile styles */
+            .modal-car-info h3 {
+                font-size: 1.5rem;
+            }
+
+            .modal-car-info p {
+                font-size: 0.9rem;
+            }
+
+            .spec-item {
+                font-size: 0.9rem;
+            }
+
+            .car-price {
+                font-size: 1.5rem;
+            }
+
+            .contact-btn {
+                height: 50px;
+                font-size: 24px;
+            }
+
+            .contact-pill {
+                width: 240px;
+            }
+        }        /* Fullscreen Image Zoom */        .fullscreen-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            z-index: 3000;
+            cursor: zoom-out;
+            backdrop-filter: blur(8px);
+            align-items: center;
+            justify-content: center;
+        }        .fullscreen-carousel {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .fullscreen-image {
+            position: relative;
+            max-width: 90vw;
+            max-height: calc(90vh - 100px); /* Reduced height to accommodate buttons */
+            object-fit: contain;
+            border: 2px solid var(--primary);
+            border-radius: var(--border-radius);
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.7);
+            transition: transform 0.3s ease;
+        }        .fullscreen-controls {
+            position: fixed;
+            bottom: 80px;
+            left: 0;
+            right: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 50px;
+            pointer-events: none;
+        }
+
+        .fullscreen-carousel .carousel-btn {
+            position: relative;
+            width: 60px;
+            height: 60px;
+            font-size: 28px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid var(--primary);
+            pointer-events: auto;
+        }
+
+        .fullscreen-carousel .carousel-btn.prev {
+            margin-right: auto;
+        }
+
+        .fullscreen-carousel .carousel-btn.next {
+            margin-left: auto;
+        }
+
+        .fullscreen-dots {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 12px 24px;
+        }
+
+        .fullscreen-dots .dot {
+            width: 12px;
+            height: 12px;
+            margin: 0 8px;
+        }
+
+        .contact-pill {
+            display: flex;
+            align-items: center;
+            background: linear-gradient(90deg, #4CAF50, #25D366);
+            border-radius: 60px;
+            padding: 4px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: var(--transition);
+            overflow: hidden;
+            width: 280px;
+        }
+
+        .contact-pill:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .contact-btn {
+            width: 140px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 28px;
+            color: white;
+            position: relative;
+            transition: var(--transition);
+            backdrop-filter: blur(5px);
+        }
+
+        .contact-btn.phone {
+            background: rgba(76, 175, 80, 0.9);
+            border-radius: 50px 0 0 50px;
+        }
+
+        .contact-btn.whatsapp {
+            background: rgba(37, 211, 102, 0.9);
+            border-radius: 0 50px 50px 0;
+        }
+
+        .contact-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .contact-pill .contact-btn.phone:hover {
+            background: rgba(76, 175, 80, 0.7);
+        }
+
+        .contact-pill .contact-btn.whatsapp:hover {
+            background: rgba(37, 211, 102, 0.7);
+        }
+
+
+
+        /* Filter Section Styles */
+.filter-section {
+    margin-bottom: 40px;
+    width: 100%;
+    position: relative;
+}
+
+/* Desktop layout */
+.filter-carousel {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+/* Mobile layout */
+@media (max-width: 768px) {
+    .filter-carousel {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE and Edge */
+        padding: 10px 15px;
+        margin: 0 -15px;
+        justify-content: flex-start;
+    }
+    
+    .filter-carousel::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Opera */
+    }
+}
+
+.filter-btn {
+    background-color: var(--secondary-light);
+    color: var(--text);
+    border: 1px solid var(--primary);
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: var(--transition);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    aspect-ratio: 1;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    flex-shrink: 0; /* Prevent buttons from shrinking on mobile */
+    scroll-snap-align: start; /* For better scrolling experience */
+}
+
+/* Special styling for "All Brands" button */
+.filter-btn[data-filter="all"] {
+    aspect-ratio: unset;
+    width: auto;
+    min-width: 120px;
+    padding: 8px 15px;
+}
+
+.filter-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: var(--transition);
+    opacity: 0.9;
+}
+
+.filter-btn span {
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+.filter-btn:hover, .filter-btn.active {
+    background-color: var(--primary);
+    color: var(--accent);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.filter-btn:hover img, .filter-btn.active img {
+    filter: brightness(0) invert(1);
+}

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>CARBONEDITION | Premium  Car Dealership</title> 
+    <title>CARBONEDITION | Premium Racing Car Rentals</title> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -304,8 +304,6 @@
             background: linear-gradient(transparent, var(--secondary));
             z-index: 1;
         }
-          
-       
         
         .hero-content {
             max-width: 800px;
@@ -369,7 +367,16 @@
             position: relative;
         }
         
-       
+        .fleet::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 20px;
+            background: linear-gradient(var(--primary), transparent);
+            opacity: 0.2;
+        }
         
         .fleet-grid {
             display: grid;
@@ -493,14 +500,12 @@
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 30px;
         }
-
         
         .stat-item {
             padding: 30px;
             position: relative;
         }
         
-  
         .stat-item::after {
             content: '';
             position: absolute;
@@ -620,7 +625,7 @@
             <!-- Desktop Navigation -->
             <nav class="desktop-nav">
                 <ul>
-                    <li><a href="#">Home</a></li>
+                    <li><a href="index.html">Home</a></li>
                     <li><a href="fleet.html">Fleet</a></li>
                     <li><a href="about.html">About</a></li>
                     <li><a href="contact.html">Contact</a></li>
@@ -630,7 +635,7 @@
             <!-- Mobile Navigation -->
             <nav class="mobile-nav" id="mobile-navigation" data-visible="false">
                 <ul>
-                    <li><a href="#">Home</a></li>
+                    <li><a href="index.html">Home</a></li>
                     <li><a href="fleet.html">Fleet</a></li>
                     <li><a href="about.html">About</a></li>
                     <li><a href="contact.html">Contact</a></li>
@@ -643,7 +648,7 @@
     <section class="hero">
         <div class="hero-content">
             <h1>UNLEASH <span>THE BEAST</span></h1>
-            <p>Experience automotive excellence, Luxury, power, and prestige redefined in Dubai.</p>
+            <p>Experience the thrill of driving the world's most powerful performance cars. From track-ready supercars to legendary hypercars, we offer the ultimate driving experience for true enthusiasts.</p>
             <a href="#fleet" class="btn">View Your Ride</a>
         </div>
     </section>
@@ -699,7 +704,7 @@
         <div class="container">
             <div class="stats-container">
                 <div class="stat-item">
-                    <div class="stat-number">50+</div>
+                    <div class="stat-number">15+</div>
                     <div class="stat-label">High-Performance Cars</div>
                 </div>
                

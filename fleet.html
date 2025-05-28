@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">    <title>CARBONEDITION | Our Fleet</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="utils/sheets.js"></script>
+    <link href="fleetcss.css" rel="stylesheet"> 
+   
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="loader"></div>
+    </div>
+    
+    <!-- Racing Stripes Background -->
+    <div class="racing-stripes">
+    
+        <div class="stripe"></div>
+        <div class="stripe"></div>
+        <div class="stripe"></div>
+        <div class="stripe"></div>
+        <div class="stripe"></div>
+    </div>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="container header-container">
+            <a href="main.html" class="logo">
+                <img src="images/blacklogocev.png" alt="Carbon Edition Logo" style="height: 60px; margin-top: 20px; width: auto; ;">
+            </a>
+            
+            <button class="mobile-nav-toggle" aria-controls="mobile-navigation" aria-expanded="false">
+                <span class="hamburger"></span>
+                <span class="sr-only">Menu</span>
+            </button>
+            
+            <!-- Desktop Navigation -->
+            <nav class="desktop-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="fleet.html">Fleet</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <!-- Mobile Navigation -->
+            <nav class="mobile-nav" id="mobile-navigation" data-visible="false">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="fleet.html">Fleet</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Fleet Banner Section -->
+    <section class="fleet-banner">
+        <div class="fleet-banner-content">
+            <h1>OUR <span>RACING FLEET</span></h1>
+            <p>Experience the thrill of driving the world's most powerful and exclusive racing cars, all available for rent.</p>
+        </div>
+    </section>
+
+    <!-- Fleet Section -->
+    <section class="fleet-page">
+    <div class="container">
+        <h2>Available Cars</h2>
+        <!-- Filter Section -->
+        <div class="filter-section">                
+            <div class="filter-carousel">
+                <button class="filter-btn active" data-filter="all">
+                    <span>All Brands</span>
+                </button>
+                <button class="filter-btn" data-filter="Land Rover">
+                    <img src="images/landrover.png" alt="Land Rover">
+                </button>
+                <button class="filter-btn" data-filter="Lamborghini">
+                    <img src="images/lamborghini.png" style="height: 55PX;" alt="Lamborghini">
+                </button>
+                <button class="filter-btn" data-filter="Rolls Royce">
+                    <img src="images/rollsroyce.png" style="height: 50 PX; filter: brightness(0) invert(1)" alt="Rolls Royce">
+                </button>
+                <button class="filter-btn" data-filter="Mercedes">
+                    <img src="images/mercedes.png" style="height: 50 PX; filter: brightness(0) invert(1)" alt="Mercedes">
+                </button>
+                <button class="filter-btn" data-filter="BYD">
+                    <img src="images/byd.png" style="height: 50 PX; filter: brightness(0) invert(1)" alt="BYD">
+                </button>
+                <button class="filter-btn" data-filter="BMW">
+                    <img src="images/bmw.png" style="height: 50 PX; filter: brightness(0) invert(1)" alt="BMW">
+                </button>
+            </div>
+        </div>        
+    </div>
+</section>
+            
+            <div id="fleet-container">
+                <div class="loading">Loading our fleet...</div>
+            </div>
+            
+            <!-- Pagination -->
+            <div class="pagination" id="pagination">
+                <!-- Pagination buttons will be added dynamically -->                                                                                               
+            </div>
+        </div>
+    </section>
+    
+    <!-- Car Details Modal -->
+    <div class="modal" id="carModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="modalContent">
+                <!-- Modal content will be populated dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="copyright">
+                <p>&copy; 2025 CARBONEDITION. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>    <!-- Fullscreen Image Overlay -->      <div class="fullscreen-overlay" id="fullscreenOverlay" onclick="closeFullscreen()">
+        <div class="fullscreen-carousel" onclick="event.stopPropagation()">
+            <button class="close-btn" onclick="closeFullscreen()">
+                <i class="fas fa-times"></i>
+            </button>
+            <img class="fullscreen-image" id="fullscreenImage" src="" alt="Fullscreen view">
+            <div class="fullscreen-controls">
+                <button class="carousel-btn prev" onclick="event.stopPropagation(); moveFullscreenCarousel(-1)">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="carousel-btn next" onclick="event.stopPropagation(); moveFullscreenCarousel(1)">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            <div class="carousel-dots fullscreen-dots" onclick="event.stopPropagation()">
+                <!-- Dots will be added dynamically -->
+            </div>
+        </div>
+    </div>
+
+     
+     <script>
+    // Sticky Header
+    window.addEventListener('scroll', function() {
+        const header = document.getElementById('header');
+        if (window.scrollY > 100) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+    
+    // Mobile Navigation Toggle
+    const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+    const mobileNav = document.querySelector('.mobile-nav');
+    
+    mobileNavToggle.addEventListener('click', () => {
+        const visibility = mobileNav.getAttribute('data-visible');
+        const expanded = mobileNavToggle.getAttribute('aria-expanded');
+        
+        if (visibility === "false") {
+            mobileNav.setAttribute('data-visible', "true");
+            mobileNavToggle.setAttribute('aria-expanded', "true");
+            document.body.style.overflow = 'hidden';
+        } else {
+            mobileNav.setAttribute('data-visible', "false");
+            mobileNavToggle.setAttribute('aria-expanded', "false");
+            document.body.style.overflow = '';
+        }
+    });
+    
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll('.mobile-nav a').forEach(link => {
+        link.addEventListener('click', () => {
+            mobileNav.setAttribute('data-visible', "false");
+            mobileNavToggle.setAttribute('aria-expanded', "false");
+            document.body.style.overflow = '';
+        });
+    });
+    
+    // Smooth scrolling for all internal links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    // Preloader
+    window.addEventListener('load', function() {
+        const preloader = document.querySelector('.preloader');
+        preloader.classList.add('fade-out');
+        setTimeout(() => {
+            preloader.style.display = 'none';
+        }, 500);
+    });    // Fleet data will be fetched from Google Sheets
+    let carsData = [];
+    let currentSlide = 0;    // Function to create car card HTML    // Function to truncate text with ellipsis
+    function truncateText(text, maxLength) {
+        if (text.length <= maxLength) return text;
+        return text.substr(0, maxLength - 3) + '...';
+    }
+
+    function createCarCard(car) {
+        const truncatedDescription = truncateText(car.description, 100); // Truncate at 100 characters
+        return `
+            <div class="car-card" data-brand="${car.badge}">
+                <div class="car-img">
+                    <img src="${car.image}" alt="${car.name}">
+                    <div class="car-badge">${car.badge}</div>
+                </div>                <div class="car-info">
+                    <h3>${car.name}</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 10px; font-size: 0.9rem; max-height: 4.2em; line-height: 1.4em; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">${car.description}</p>
+                    <div class="car-specs">
+                        <span><i class="fas fa-tachometer-alt"></i> ${car.specs.speed}</span>
+                        <span><i class="fas fa-stopwatch"></i> ${car.specs.acceleration}</span>
+                        <span><i class="fas fa-calendar-alt"></i> ${car.specs.fuel}</span>
+                    </div>
+                    <div class="car-price">
+                        AED ${car.price} 
+                    </div>
+                    <a href="#" class="btn" style="width: 100%; padding: 10px; font-size: 0.9rem; text-align: center;" onclick="openCarModal(${car.id})">More Info</a>
+                </div>
+            </div>
+        `;
+    }
+
+    // Initialize fleet display
+    async function initFleet() {
+        const fleetContainer = document.getElementById('fleet-container');
+        let loadingDiv = fleetContainer.querySelector('.loading');
+
+        try {
+            // Fetch cars data from Google Sheets
+            carsData = await fetchCarsData();
+            
+            if (!Array.isArray(carsData) || carsData.length === 0) {
+                throw new Error('No cars data available');
+            }
+            
+            // Create and display car cards
+            const carCards = carsData.map(car => createCarCard(car)).join('');
+            fleetContainer.innerHTML = `<div class="fleet-grid">${carCards}</div>`;
+
+            // Initialize filters
+            initializeFilters();
+        } catch (error) {
+            console.error('Error initializing fleet:', error);
+            fleetContainer.innerHTML = `
+                <div class="error">
+                    <p>Error loading fleet data: ${error.message}</p>
+                    <p>Please make sure:</p>
+                    <ul style="list-style: none; margin-top: 10px;">
+                        <li>• The Google Spreadsheet is published to the web</li>
+                        <li>• The spreadsheet ID is correct</li>
+                        <li>• The sheet name matches exactly</li>
+                    </ul>
+                    <button onclick="initFleet()" class="btn" style="margin-top: 20px;">Try Again</button>
+                </div>`;
+        } finally {
+            if (loadingDiv) {
+                loadingDiv.style.display = 'none';
+            }
+        }
+    }
+
+    // Initialize filters
+    function initializeFilters() {
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const carCards = document.querySelectorAll('.car-card');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                const filterValue = button.getAttribute('data-filter');
+                  carCards.forEach(card => {
+                    if (filterValue === 'all' || card.getAttribute('data-brand') === filterValue) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    }
+
+    // Car modal functionality
+    function openCarModal(carId) {
+        const car = carsData.find(c => c.id === carId);
+        if (!car) return;
+
+        const modal = document.getElementById('carModal');
+        const modalContent = document.getElementById('modalContent');
+        
+        modalContent.innerHTML = `
+            <div class="modal-car-details">
+                <div class="modal-car-image">
+                    <div class="carousel">
+                        <div class="carousel-container">
+                            <img src="${car.image}" alt="${car.name}" class="carousel-slide active" data-index="0" onclick="openFullscreen(this)" style="cursor: zoom-in;">
+                            ${car.extraImages.map((imgUrl, index) => 
+                                `<img src="${imgUrl}" alt="${car.name} ${index + 2}" class="carousel-slide" data-index="${index + 1}" onclick="openFullscreen(this)" style="cursor: zoom-in;">`
+                            ).join('')}
+                            <button class="carousel-btn prev" onclick="moveCarousel(-1)"><i class="fas fa-chevron-left"></i></button>
+                            <button class="carousel-btn next" onclick="moveCarousel(1)"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                        <div class="carousel-dots">
+                            <span class="dot active" onclick="setSlide(0)"></span>
+                            ${car.extraImages.map((_, index) => 
+                                `<span class="dot" onclick="setSlide(${index + 1})"></span>`
+                            ).join('')}
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-car-info">
+                    <h3>${car.name}</h3>
+                    <p>${car.description}</p>
+                    <div class="modal-car-specs">
+                        <div class="spec-item">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Speed: ${car.specs.speed} km/h</span>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-stopwatch"></i>
+                            <span>0-100: ${car.specs.acceleration}s</span>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-car"></i>
+                            <span>Horsepower: ${car.specs.hp}</span>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Year: ${car.specs.fuel}</span>
+                        </div>
+                    </div>                    <div class="car-price">
+                        AED ${car.price} 
+                    </div>                    <div style="display: flex; justify-content: center; margin-top: 30px;">
+                        <div class="contact-pill">
+                            <a href="tel:+971501234567" class="contact-btn phone">
+                                <i class="fas fa-phone"></i>
+                            </a>
+                            <a href="https://wa.me/971501234567" target="_blank" class="contact-btn whatsapp">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        modal.style.display = 'block';
+        currentSlide = 0; // Reset current slide when opening modal
+    }
+
+    // Close modal functionality
+    document.querySelector('.close-modal').addEventListener('click', () => {
+        document.getElementById('carModal').style.display = 'none';
+    });
+
+    // Close modal when clicking outside
+    window.addEventListener('click', (e) => {
+        const modal = document.getElementById('carModal');
+        if (e.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+
+    // Initialize the fleet when DOM is loaded
+    document.addEventListener('DOMContentLoaded', initFleet);
+
+    // Carousel functionality
+    function moveCarousel(direction) {
+        const slides = document.querySelectorAll('.carousel-slide');
+        const dots = document.querySelectorAll('.dot');
+        
+        currentSlide = (currentSlide + direction + slides.length) % slides.length;
+        updateCarousel();
+        
+        // If fullscreen is open, update it too
+        if (document.getElementById('fullscreenOverlay').style.display === 'flex') {
+            openFullscreen();
+        }
+    }
+    
+    function setSlide(index) {
+        currentSlide = index;
+        updateCarousel();
+        
+        // If fullscreen is open, update it too
+        if (document.getElementById('fullscreenOverlay').style.display === 'flex') {
+            openFullscreen();
+        }
+    }
+    
+    function updateCarousel() {
+        const slides = document.querySelectorAll('.carousel-slide');
+        const dots = document.querySelectorAll('.dot');
+        
+        slides.forEach(slide => slide.classList.remove('active'));
+        dots.forEach(dot => dot.classList.remove('active'));
+        
+        slides[currentSlide].classList.add('active');
+        dots[currentSlide].classList.add('active');
+    }    // Keep track of fullscreen state
+    let fullscreenImages = [];
+    let fullscreenCurrentSlide = 0;    // Fullscreen functionality
+    function openFullscreen(imageElement) {
+        // Get all carousel images
+        const slides = document.querySelectorAll('.carousel-slide');
+        fullscreenImages = Array.from(slides).map(slide => ({
+            src: slide.src,
+            alt: slide.alt
+        }));
+        
+        // Use the current slide index from the main carousel
+        fullscreenCurrentSlide = currentSlide;
+        
+        // Show fullscreen overlay
+        const overlay = document.getElementById('fullscreenOverlay');
+        overlay.style.display = 'flex';
+        
+        // Update the carousel
+        updateFullscreenCarousel();
+        updateFullscreenDots();
+        
+        // Add keyboard navigation
+        document.addEventListener('keydown', handleFullscreenKeyPress);
+    }
+
+    function closeFullscreen() {
+        const overlay = document.getElementById('fullscreenOverlay');
+        overlay.style.display = 'none';
+        document.body.style.overflow = ''; // Re-enable scrolling
+    }
+
+    function moveFullscreenCarousel(direction) {
+        fullscreenCurrentSlide += direction;
+        
+        // Handle wrap-around
+        if (fullscreenCurrentSlide >= fullscreenImages.length) {
+            fullscreenCurrentSlide = 0;
+        } else if (fullscreenCurrentSlide < 0) {
+            fullscreenCurrentSlide = fullscreenImages.length - 1;
+        }
+        
+        updateFullscreenCarousel();
+        updateFullscreenDots();
+    }
+
+    function updateFullscreenCarousel() {
+        const fullscreenImage = document.getElementById('fullscreenImage');
+        const currentImage = fullscreenImages[fullscreenCurrentSlide];
+        fullscreenImage.src = currentImage.src;
+        fullscreenImage.alt = currentImage.alt;
+    }
+
+    function updateFullscreenDots() {
+        const dotsContainer = document.querySelector('.fullscreen-dots');
+        dotsContainer.innerHTML = '';
+        
+        fullscreenImages.forEach((_, index) => {
+            const dot = document.createElement('div');
+            dot.className = `dot ${index === fullscreenCurrentSlide ? 'active' : ''}`;
+            dot.onclick = () => {
+                fullscreenCurrentSlide = index;
+                updateFullscreenCarousel();
+                updateFullscreenDots();
+            };
+            dotsContainer.appendChild(dot);
+        });
+    }
+
+    function handleFullscreenKeyPress(event) {
+        switch(event.key) {
+            case 'ArrowLeft':
+                moveFullscreenCarousel(-1);
+                break;
+            case 'ArrowRight':
+                moveFullscreenCarousel(1);
+                break;
+            case 'Escape':
+                closeFullscreen();
+                break;
+        }
+    }
+
+    // Update click handler for carousel slides
+    document.querySelectorAll('.carousel-slide').forEach(slide => {
+        slide.onclick = () => openFullscreen(slide);
+    });
+
+    // Close fullscreen when clicking outside the image
+    function handleOverlayClick(event) {
+        // Only close if clicking directly on the overlay background
+        if (event.target.id === 'fullscreenOverlay') {
+            closeFullscreen();
+        }
+    }
+
+    // Stop propagation for carousel buttons
+    document.querySelectorAll('.carousel-btn').forEach(button => {
+        button.onclick = (event) => {
+            event.stopPropagation();
+            const direction = button.classList.contains('prev') ? -1 : 1;
+            moveFullscreenCarousel(direction);
+        };
+    });
+
+    // Update click handler for carousel dots
+    function updateFullscreenDots() {
+        const dotsContainer = document.querySelector('.fullscreen-dots');
+        dotsContainer.innerHTML = '';
+        
+        fullscreenImages.forEach((_, index) => {
+            const dot = document.createElement('div');
+            dot.className = `dot ${index === fullscreenCurrentSlide ? 'active' : ''}`;
+            dot.onclick = (event) => {
+                event.stopPropagation();
+                fullscreenCurrentSlide = index;
+                updateFullscreenCarousel();
+                updateFullscreenDots();
+            };
+            dotsContainer.appendChild(dot);
+        });
+    }
+
+    // Add event listener for fullscreen overlay
+    document.getElementById('fullscreenOverlay').addEventListener('click', function(event) {
+        // Close only if clicking directly on the overlay background
+        if (event.target === this) {
+            closeFullscreen();
+        }
+    });
+</script>
+</body>
+</html>
