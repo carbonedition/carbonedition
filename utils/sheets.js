@@ -29,14 +29,14 @@ async function fetchCarsData() {
                 type: values[1],
                 description: values[2],
                 image: values[3],
-                badge: validatedBadge,
+                badge: validatedBadge,                
                 specs: {
                     speed: values[5],
                     hp: values[6],
                     fuel: values[7],
                     acceleration: values[8]
                 },
-                price: values[9],
+                price: values[9] ? values[9].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") : "",
                 extraImages: values.slice(10).filter(url => url && url.trim() !== '')
             };
         });
